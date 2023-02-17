@@ -13,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
@@ -20,18 +21,20 @@ import jakarta.persistence.Table;
 public class Comment {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "comment_generator")
+  @SequenceGenerator(name = "comment_sequence", sequenceName = "comment_sequence", allocationSize = 1)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "comment_sequence")
   private Long id;
 
-  @Lob
+  // @Lob
   private String content;
 
+  @ManyToOne
   // @ManyToOne(fetch = FetchType.EAGER, optional = false) // eager loading is bad
   // for performance
-  @ManyToOne(fetch = FetchType.LAZY, optional = false)
-  @JoinColumn(name = "tutorial_id", nullable = false)
-  @OnDelete(action = OnDeleteAction.CASCADE)
-  @JsonIgnore
+  // @ManyToOne(fetch = FetchType.LAZY, optional = false)
+  // @JoinColumn(name = "tutorialId", nullable = false)
+  // @OnDelete(action = OnDeleteAction.CASCADE)
+  // @JsonIgnore
   private Tutorial tutorial;
 
   // getters and setters

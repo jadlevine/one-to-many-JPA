@@ -1,10 +1,10 @@
 package sh.joshlevine.bezkoderjpaonetomany.model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
@@ -12,16 +12,17 @@ import jakarta.persistence.Table;
 public class Tutorial {
 
   @Id
+  @SequenceGenerator(name = "tutorial_generator", sequenceName = "tutorial_generator", allocationSize = 1)
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tutorial_generator")
-  private long id;
+  private Long id;
 
-  @Column(name = "title")
+  // @Column(name = "title")
   private String title;
 
-  @Column(name = "description")
+  // @Column(name = "description")
   private String description;
 
-  @Column(name = "published")
+  // @Column(name = "published")
   private boolean published;
 
   public Tutorial() {

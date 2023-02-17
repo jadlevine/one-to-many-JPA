@@ -31,6 +31,12 @@ public class CommentController {
   @Autowired
   private CommentRepository commentRepository;
 
+  @GetMapping("/comments")
+  public ResponseEntity<List<Comment>> getAllComments() {
+    List<Comment> comments = commentRepository.findAll();
+    return new ResponseEntity<>(comments, HttpStatus.OK);
+  }
+
   @GetMapping("/tutorials/{tutorialId}/comments")
   public ResponseEntity<List<Comment>> getAllCommentsByTutorialId(@PathVariable(value = "tutorialId") Long tutorialId) {
     if (!tutorialRepository.existsById(tutorialId)) {

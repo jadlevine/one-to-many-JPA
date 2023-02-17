@@ -8,7 +8,7 @@ import jakarta.transaction.Transactional;
 import sh.joshlevine.bezkoderjpaonetomany.model.Comment;
 
 public interface CommentRepository extends JpaRepository<Comment, Long> {
-  List<Comment> findByTutorialId(Long postId); // returns all Comments of tutorialId
+  List<Comment> findByTutorialId(Long tutorialId); // returns all Comments of tutorialId
 
   @Transactional
   void deleteByTutorialId(long tutorialId); // deletes all Comments of tutorialId
